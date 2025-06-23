@@ -8,28 +8,51 @@
             string state = "California";
             string city = "San Fransicso";
             string landmark = "Alcatraz Island";
-            // output the length of state
 
-            // Concatenate the contents of city and landmark * don't forget to add a space
+            // Output the length of state
+            Console.WriteLine("Length of state: " + state.Length);
 
-            // output the first character of county
+            // Concatenate the contents of city and landmark (add a space)
+            Console.WriteLine("City + Landmark: " + city + " " + landmark);
 
-            // output a concatenation of the first and last characters of city
+            // Output the first character of country
+            Console.WriteLine("First character of country: " + country[0]);
 
-            // output the substring of landmark starting at c and outputting to the end
+            // Output a concatenation of the first and last characters of city
+            Console.WriteLine("First + Last char of city: " + city[0] + city[city.Length - 1].ToString());
 
-            // output the substring of country starting at the first S and ending at the first A
+            // Output the substring of landmark starting at 'c' to the end
+            int indexC = landmark.IndexOf('c');
+            if (indexC != -1)
+                Console.WriteLine("Substring from 'c' in landmark: " + landmark.Substring(indexC));
+            else
+                Console.WriteLine("'c' not found in landmark");
 
-            // output the position of f in California
+            // Output the substring of country from first 'S' to first 'A'
+            int indexS = country.IndexOf('S');
+            int indexA = country.IndexOf('A', indexS); // start looking from indexS
+            if (indexS != -1 && indexA != -1 && indexA > indexS)
+                Console.WriteLine("Substring from 'S' to 'A': " + country.Substring(indexS, indexA - indexS + 1));
+            else
+                Console.WriteLine("Could not find suitable 'S' and 'A' in country");
 
-            //************CHALLENGE****************//
-            // Output how many vowels are in each of the strings in the format
-            // California has n vowels
+            // Output the position of 'f' in "California"
+            int indexF = state.IndexOf('f');
+            Console.WriteLine("Position of 'f' in California: " + indexF);
 
+            string[] labels = { "Country", "State", "City", "Landmark" };
+            string[] values = { country, state, city, landmark };
 
-            
-
-            // Show your evidence of the program running in the Readme file
+            foreach (var (label, value) in labels.Zip(values))
+            {
+                int vowelCount = 0;
+                foreach (char c in value.ToLower())
+                {
+                    if ("aeiou".Contains(c))
+                        vowelCount++;
+                }
+                Console.WriteLine($"{label}: {value} has {vowelCount} vowels");
+            }
         }
     }
 }
